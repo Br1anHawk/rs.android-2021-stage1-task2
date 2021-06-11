@@ -3,7 +3,6 @@ package subtask3
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import kotlin.reflect.KClass
-import kotlin.reflect.jvm.isAccessible
 
 class Blocks {
 
@@ -29,12 +28,14 @@ class Robot(private val blockA: Array<Any>, blockB: KClass<*>) {
 //                    call()
 //                }
                 0
-            String::class -> blockB.constructors.first().call()
+            String::class -> //blockB.constructors.first().call()
+                ""
             LocalDate::class ->
-                with(blockB.constructors.first()) {
-                    isAccessible = true
-                    call(0, 0, 0)
-                }
+//                with(blockB.constructors.first()) {
+//                    isAccessible = true
+//                    call(0, 0, 0)
+//                }
+                LocalDate.now()
             else -> Any()
         }
     }
